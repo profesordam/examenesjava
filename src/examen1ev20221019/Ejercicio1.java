@@ -18,13 +18,14 @@ import java.util.Arrays;
 public class Ejercicio1 {
 
 	public static void main(String[] args) {
-		int [] numeros = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-		System.out.println("Número elegido: " + mostrar(numeros));
+		int [] numeros = {1, 2, 3, 4, 5, 6, 7, 8};
+		System.out.println("número elegido al azar = " + mostrar(numeros));
 	}
 	
-	public static int mostrar(int [] numeros) {
+	static int mostrar(int [] numeros) {
 		System.out.println(Arrays.toString(numeros));
-		return numeros[(int) Math.round(Math.random() * (numeros.length - 1))]; 
+		int i = (int) (Math.random() * (numeros.length - 1));
+		return numeros[i];
 	}
 
 }

@@ -26,19 +26,52 @@ import java.util.Arrays;
 public class Ejercicio3 {
 
 	public static void main(String[] args) throws IOException {
-		int[] numeros = crearVector(10, 200);
-		llenarVector(numeros);
+		/*
+		 *  para probar
+		 */
 		
-		
-		// para probar
 //		int [] numeros = {1, 13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4}; 
 //		int [] numeros = {1, 13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 //		int [] numeros = {1, 13, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 //		int [] numeros = {1, 13, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-//		int [] numeros = {1, 13, 1, 1, 1, 1, 1, 1, 1, 1, -1};
+		int [] numeros = {1, 13, 1, 1, 1, 1, 1, 1, 1, 1, -1};
 		
+//		int [] numeros = crearVector(10, 200);
 		System.out.println(Arrays.toString(numeros));
-		System.out.println("no sumados = " + mostrarSuma(numeros));
+		System.out.println("No sumados = " + suma(numeros));
+	}
+	
+	static int suma(int [] numeros) {
+		int suma = 0;
+		int i = 0;
+		int noSumados = 0;
+		
+		while (i < numeros.length) {
+			if (numeros[i] != 13)
+				suma += numeros[i++];
+			else {
+				i++;
+				int parcial = 0;
+				int noSumadosParcial = 0;
+				noSumados++;
+				while (noSumados < 13 && i < numeros.length) {
+					parcial += numeros[i++];
+					noSumadosParcial++;
+				}
+				if (parcial == 7)
+					suma += 7;
+				else
+					noSumados += noSumadosParcial;
+				i++;
+			}
+		}
+		System.out.println("Suma = " + suma);
+		return noSumados;
+	}
+	
+	static void llenarVector(int [] numeros) {
+		for (int i=0; i<numeros.length; i++)
+			numeros[i] = (int) (Math.random() * 200 - 100);
 	}
 	
 	static int[] crearVector(int min, int max) throws IOException {
@@ -64,38 +97,5 @@ public class Ejercicio3 {
 		return new int[l];
 	}
 	
-	static void llenarVector(int[] vector) {
-		for (int i=0; i<vector.length; i++)
-			vector[i] = (int) Math.round(Math.random() * 200 - 100);
-	}
-	
-	// retorna la candidad de números que no se sumaron
-	static int mostrarSuma(int [] vector) {
-		int noSumados = 0;
-		int suma = 0;
-		int i = 0;
-		while (i < vector.length) {
-			if (vector[i] != 13) {
-				suma += vector[i];
-				i++;
-			}
-			else {
-				i++;
-				int parcial = 0;
-				int nosumadosParcial = 0;
-				while (i < vector.length && nosumadosParcial < 13) {
-					parcial += vector[i];
-					i++;
-					nosumadosParcial++;
-				}
-				if (parcial == 7)
-					suma += parcial;
-				else
-					noSumados += nosumadosParcial;
-			}
-		}
-		System.out.println("Suma = " + suma);
-		return noSumados;
-	}
 
 }

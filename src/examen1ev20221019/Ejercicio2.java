@@ -23,33 +23,48 @@ public class Ejercicio2 {
 		System.out.println("17, 17 -> " + blackjack(17, 17));
 		System.out.println("22, 20 -> " + blackjack(22, 20));
 		System.out.println("20, 22 -> " + blackjack(20, 22));
+		System.out.println("25, 22 -> " + blackjack(25, 22));
 		
 	}
+	
+//	static int suma(int a, int b, int c) {
+//		if (a >= 13 && a <= 19 && a != 15 && a != 16)
+//			a = 0;
+//		if (b >= 13 && b <= 19 && b != 15 && b != 16)
+//			b = 0;
+//		if (c >= 13 && c <= 19 && c != 15 && c != 16)
+//			c = 0;
+//		return a + b + c;
+//	}
 	
 	static int suma(int a, int b, int c) {
 		return cambiarValor(a) + cambiarValor(b) + cambiarValor(c);
 	}
 	
 	static int cambiarValor(int n) {
-		if (n >= 13 && n <= 19 && n != 15 && n != 16)
-			return 0;
-		else
-			return n;
+		return n >= 13 && n <= 19 && n != 15 && n != 16 ? 0 : n;
+//		if (n >= 13 && n <= 19 && n != 15 && n != 16)
+//			return 0;
+//		else
+//			return n;
 	}
 	
 	static int blackjack(int a, int b) {
-		int da = 21 - a;
-		int db = 21 - b;
-		if (da < 0 && db < 0)
-			return 0;
-		else if (db < 0 || (da > 0 && da < db ))
-			return a;
-		else
-			return b;
-//		else if (db >= 0 && (da <= 0 || da >= db))
-//			return b;
-//		else
-//			return a;
+		if(a>21)a=-1;
+		if(b>21)b=-1;
+		int r = ((21-b)>(21-a) ? a : b);
+		return r < 0 ? 0 : r;
 	}
+	
+//	static int blackjack(int a, int b) {
+//		if (a > 21 && b > 21)
+//			return 0;
+//		else if (b > 21 || (a <= 21 && a > b))
+//			return a;
+//		else 
+//			return b;
+//	}
+	
+	
 
 }
