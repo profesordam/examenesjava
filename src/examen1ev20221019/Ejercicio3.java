@@ -54,7 +54,7 @@ public class Ejercicio3 {
 				int parcial = 0;
 				int noSumadosParcial = 0;
 				noSumados++;
-				while (noSumados < 13 && i < numeros.length) {
+				while (noSumadosParcial < 13 && i < numeros.length) {
 					parcial += numeros[i++];
 					noSumadosParcial++;
 				}
@@ -62,7 +62,6 @@ public class Ejercicio3 {
 					suma += 7;
 				else
 					noSumados += noSumadosParcial;
-				i++;
 			}
 		}
 		System.out.println("Suma = " + suma);
