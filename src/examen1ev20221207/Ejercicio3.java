@@ -1,7 +1,12 @@
 package examen1ev20221207;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
 /*
- * En una clase Ejercicio3 escribe un programa Java que lea de la consola una secuencia de cadenas
+ * Escribe un programa Java que lea de la consola una secuencia de cadenas
  * y la procese según las especificaciones siguientes:
  * 
  *     * Una vez leída la secuencia, se mostrará de nuevo en la consola imprimiendo cada palabra
@@ -37,8 +42,26 @@ package examen1ev20221207;
 
 public class Ejercicio3 {
 
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) throws IOException {
+		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(in.readLine());
+		String [] palabras = new String[n];
+		for (int i=0; i<palabras.length; i++)
+			palabras[i] = in.readLine();
+		Arrays.sort(palabras);
+		for (String p: palabras)
+			System.out.println(p + " - " + cifrar(p));
+	}
+	
+	static long cifrar(String p) {
+		long suma = 0;
+		for (char c: p.toCharArray()) {
+			if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')
+				suma += c * p.length();
+			else
+				suma += c / p.length();
+		}
+		return suma;
 	}
 	
 }

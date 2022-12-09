@@ -1,5 +1,7 @@
 package examen1ev20221207;
 
+import java.util.Arrays;
+
 /*
  * Programa Java que realice las acciones siguientes definiendo, además del método main,
  * todos los métodos adicionales que se consideren necesarios: 
@@ -27,7 +29,24 @@ package examen1ev20221207;
 public class Ejercicio2 {
 
 	public static void main(String[] args) {
-		
+		int n = (int) (Math.random() * 50 + 10);
+		double [] array = new double[(int) Ejercicio1.aleatorio(10, 50)];
+		for (int i=0; i<array.length; i++)
+			array[i] = (long) ((Math.random() * 2000 - 1000) * 100) / 100d ;
+		System.out.println(Arrays.toString(array));
+		double max = (1000 * array.length) / 2;
+		double suma = 0;
+		int i = 0;
+		do {
+			suma += array[i];
+			i++;
+		} while (i < array.length && suma < max);
+		double resultado;
+		if (suma <= max)
+			resultado = suma * 0.6666;
+		else
+			resultado = suma * 0.3333;
+		System.out.println(resultado);
 	}
 	
 }

@@ -1,5 +1,7 @@
 package examen1ev20221207;
 
+import java.util.Arrays;
+
 /*
  * Programa que realice las acciones siguientes definiendo, además del método main, 
  * todos los métodos adicionales que se consideren necesarios: 
@@ -23,11 +25,44 @@ package examen1ev20221207;
  *  
  */
 
-
 public class Ejercicio1 {
 
 	public static void main(String[] args) {
+		long numero = aleatorio(1000, 9999);
+		System.out.println(numero);
+		System.out.println(meGusta(numero) ? "Me gusta" : "No me gusta");
+		char [] array = String.valueOf(numero).toCharArray();
+		System.out.println(Arrays.toString(array));
+	}
+	
+	static boolean meGusta(long numero) {
+		long sumaP = 0;
+		long sumaI = 0;
+		long sumaD = 0;
+		while (numero > 0) {
+			long d = numero % 10;
+			numero /= 10;
+			sumaP += d % 2 == 0 ? d : 0;
+			sumaI += d % 2 == 0 ? 0 : d;
+			sumaD += d;
+		}
+		return sumaI > sumaP || (numero % 2 != 0 && sumaD % 2 != 0);
+	}
+	
+	public static long aleatorio(long min, long max) {
+		long numero;
 		
+		if (min == max)
+			numero = min;
+		else {
+			if (min > max) {
+				long aux = min;
+				min = max;
+				max = aux;
+			}
+			numero = (long) (Math.random() * (max - min) + min);
+		}
+		return numero;
 	}
 
 }
